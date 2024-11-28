@@ -1,46 +1,76 @@
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     padding: 20px;
+    box-sizing: border-box;
   }
   
+  /* General section styling */
   section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
   }
   
+  /* Ensure images are responsive */
   .weather-icon {
-    width: 50px;
-    height: 50px;
+    max-width: 50px;
+    height: auto;
   }
   
-  .favorite-card {
-    margin-bottom: 20px;
-  }
-  
-  .mat-grid-tile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .hourly-grid {
+  /* Grid for forecast */
+  .mat-grid-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
   }
   
-  .hourly-item {
-    text-align: center;
+  /* Styling for hourly grid */
+  .hourly-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   
-  @media (max-width: 768px) {
+  .hourly-item {
+    width: 18%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  /* Styling for favorites */
+  .favorite-card {
+    margin-bottom: 10px;
+  }
+  
+  /* Ensure responsiveness */
+  @media screen and (max-width: 768px) {
     .mat-grid-list {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr 1fr;
     }
   
-    .hourly-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .hourly-item {
+      width: 30%;
+    }
+  
+    .forecast-day {
+      text-align: center;
+    }
+  
+    .container {
+      padding: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .mat-grid-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .hourly-item {
+      width: 45%;
     }
   }
   

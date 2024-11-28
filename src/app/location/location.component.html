@@ -1,19 +1,17 @@
 <div class="container">
     <!-- Location Header -->
-    <section class="location-header">
-      <h2>Weather Details for {{ locationName || 'Selected Location' }}</h2>
-      <button mat-button color="primary" (click)="addToFavorites()">
-        Add to Favorites
-      </button>
+    <section class="location-header" style="background-color: #f5f5f5;">
+      <h2 style="color: #2c3e50;">Weather Details for <span style="color: #3498db;">{{ locationName || 'Selected Location' }}</span></h2>
+      <button mat-button color="primary" (click)="addToFavorites()">Add to Favorites</button>
     </section>
   
     <!-- Current Conditions Section -->
-    <section class="current-conditions">
-      <h3>Current Conditions</h3>
+    <section class="current-conditions" style="background-color: #ecf0f1;">
+      <h3 style="color: #2c3e50;">Current Conditions</h3>
       <div *ngIf="currentConditions; else loading">
         <img [src]="getWeatherIcon(currentConditions.WeatherIcon)" alt="Weather Icon" class="weather-icon" />
-        <p>Temperature: {{ currentConditions.Temperature.Imperial.Value }}°{{ currentConditions.Temperature.Imperial.Unit }}</p>
-        <p>Weather: {{ currentConditions.WeatherText }}</p>
+        <p>Temperature: <span style="color: #e74c3c;">{{ currentConditions.Temperature.Imperial.Value }}°{{ currentConditions.Temperature.Imperial.Unit }}</span></p>
+        <p>Weather: <span style="color: #8e44ad;">{{ currentConditions.WeatherText }}</span></p>
       </div>
       <ng-template #loading>
         <mat-spinner></mat-spinner>
@@ -21,31 +19,31 @@
     </section>
   
     <!-- Five-Day Forecast Section -->
-    <section class="five-day-forecast">
-      <h3>5-Day Forecast</h3>
+    <section class="five-day-forecast" style="background-color: #bdc3c7;">
+      <h3 style="color: #2c3e50;">5-Day Forecast</h3>
       <mat-grid-list cols="5" rowHeight="150px" gutterSize="16px">
         <mat-grid-tile *ngFor="let day of fiveDayForecast?.DailyForecasts">
           <div class="forecast-day">
             <p>{{ day.Date | date: 'EEE, MMM d' }}</p>
             <img [src]="getWeatherIcon(day.Day.Icon)" alt="Weather Icon" />
-            <p>Day: {{ day.Day.IconPhrase }}</p>
-            <p>Night: {{ day.Night.IconPhrase }}</p>
-            <p>High: {{ day.Temperature.Maximum.Value }}°{{ day.Temperature.Maximum.Unit }}</p>
-            <p>Low: {{ day.Temperature.Minimum.Value }}°{{ day.Temperature.Minimum.Unit }}</p>
+            <p>Day: <span style="color: #27ae60;">{{ day.Day.IconPhrase }}</span></p>
+            <p>Night: <span style="color: #8e44ad;">{{ day.Night.IconPhrase }}</span></p>
+            <p>High: <span style="color: #e74c3c;">{{ day.Temperature.Maximum.Value }}°{{ day.Temperature.Maximum.Unit }}</span></p>
+            <p>Low: <span style="color: #3498db;">{{ day.Temperature.Minimum.Value }}°{{ day.Temperature.Minimum.Unit }}</span></p>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
     </section>
   
     <!-- Hourly Forecast Section -->
-    <section class="hourly-forecast">
-      <h3>Hourly Forecast</h3>
+    <section class="hourly-forecast" style="background-color: #f5f5f5;">
+      <h3 style="color: #2c3e50;">Hourly Forecast</h3>
       <div class="hourly-grid">
         <div class="hourly-item" *ngFor="let hour of hourlyForecast">
           <p>{{ hour.DateTime | date: 'h:mm a' }}</p>
           <img [src]="getWeatherIcon(hour.WeatherIcon)" alt="Weather Icon" class="weather-icon" />
           <p>{{ hour.IconPhrase }}</p>
-          <p>Temp: {{ hour.Temperature.Value }}°{{ hour.Temperature.Unit }}</p>
+          <p>Temp: <span style="color: #e74c3c;">{{ hour.Temperature.Value }}°{{ hour.Temperature.Unit }}</span></p>
         </div>
       </div>
     </section>
