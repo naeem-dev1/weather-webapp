@@ -1,1 +1,51 @@
-<p>home works!</p>
+<div class="container">
+    <!-- Current Conditions Section -->
+    <section class="current-conditions">
+      <h2>Current Conditions: Philadelphia</h2>
+      <div *ngIf="currentConditions; else loading">
+        <img [src]="getWeatherIcon(currentConditions.WeatherIcon)" alt="Weather Icon" />
+        <p>Temperature: {{ currentConditions.Temperature.Imperial.Value }}°{{ currentConditions.Temperature.Imperial.Unit }}</p>
+        <p>Weather: {{ currentConditions.WeatherText }}</p>
+      </div>
+      <ng-template #loading>
+        <mat-spinner></mat-spinner>
+      </ng-template>
+    </section>
+  
+    <!-- Five-Day Forecast Section -->
+    <section class="five-day-forecast">
+      <h2>5-Day Forecast</h2>
+      <mat-grid-list cols="5" rowHeight="150px" gutterSize="16px">
+        <mat-grid-tile *ngFor="let day of fiveDayForecast?.DailyForecasts">
+          <div class="forecast-day">
+            <p>{{ day.Date | date: 'EEE, MMM d' }}</p>
+            <img [src]="getWeatherIcon(day.Day.Icon)" alt="Weather Icon" />
+            <p>Day: {{ day.Day.IconPhrase }}</p>
+            <p>Night: {{ day.Night.IconPhrase }}</p>
+            <p>High: {{ day.Temperature.Maximum.Value }}°{{ day.Temperature.Maximum.Unit }}</p>
+            <p>Low: {{ day.Temperature.Minimum.Value }}°{{ day.Temperature.Minimum.Unit }}</p>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </section>
+  
+    <!-- Favorites Section -->
+    <section class="favorites">
+      <h2>Favorites</h2>
+      <div *ngIf="favorites.length > 0; else noFavorites">
+        <mat-card *ngFor="let favorite of favorites" class="favorite-card">
+          <mat-card-content>
+            <h3>{{ favorite.name }}</h3>
+            <img [src]="getWeatherIcon(favorite.currentConditions.WeatherIcon)" alt="Weather Icon" />
+            <button mat-button color="primary" (click)="goToLocation(favorite.id)">
+              View Details
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <ng-template #noFavorites>
+        <p>No favorites yet. Add some locations to your favorites!</p>
+      </ng-template>
+    </section>
+  </div>
+  
