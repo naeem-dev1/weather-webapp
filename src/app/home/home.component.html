@@ -3,7 +3,7 @@
     <section class="current-conditions">
       <h2>Current Conditions: Philadelphia</h2>
       <div *ngIf="currentConditions; else loading">
-        <img [src]="getWeatherIcon(currentConditions.WeatherIcon)" alt="Weather Icon" />
+        <img [src]="getWeatherIcon(currentConditions.WeatherIcon)" alt="Weather Icon" class="weather-icon" />
         <p>Temperature: {{ currentConditions.Temperature.Imperial.Value }}°{{ currentConditions.Temperature.Imperial.Unit }}</p>
         <p>Weather: {{ currentConditions.WeatherText }}</p>
       </div>
@@ -36,7 +36,7 @@
         <mat-card *ngFor="let favorite of favorites" class="favorite-card">
           <mat-card-content>
             <h3>{{ favorite.name }}</h3>
-            <img [src]="getWeatherIcon(favorite.currentConditions.WeatherIcon)" alt="Weather Icon" />
+            <img [src]="getWeatherIcon(favorite.currentConditions.WeatherIcon)" alt="Weather Icon" class="weather-icon" />
             <button mat-button color="primary" (click)="goToLocation(favorite.id)">
               View Details
             </button>

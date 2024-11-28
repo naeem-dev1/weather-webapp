@@ -11,7 +11,7 @@
     <section class="current-conditions">
       <h3>Current Conditions</h3>
       <div *ngIf="currentConditions; else loading">
-        <img [src]="getWeatherIcon(currentConditions.WeatherIcon)" alt="Weather Icon" />
+        <img [src]="getWeatherIcon(currentConditions.WeatherIcon)" alt="Weather Icon" class="weather-icon" />
         <p>Temperature: {{ currentConditions.Temperature.Imperial.Value }}°{{ currentConditions.Temperature.Imperial.Unit }}</p>
         <p>Weather: {{ currentConditions.WeatherText }}</p>
       </div>
@@ -43,7 +43,7 @@
       <div class="hourly-grid">
         <div class="hourly-item" *ngFor="let hour of hourlyForecast">
           <p>{{ hour.DateTime | date: 'h:mm a' }}</p>
-          <img [src]="getWeatherIcon(hour.WeatherIcon)" alt="Weather Icon" />
+          <img [src]="getWeatherIcon(hour.WeatherIcon)" alt="Weather Icon" class="weather-icon" />
           <p>{{ hour.IconPhrase }}</p>
           <p>Temp: {{ hour.Temperature.Value }}°{{ hour.Temperature.Unit }}</p>
         </div>
